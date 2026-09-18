@@ -1,26 +1,76 @@
 # Ex9 Finding the Longest Length of Nested Set in a Permutation Array
-## DATE:
+
 ## AIM:
 To write a program that finds the length of the longest set s[k] defined as s[k] = { nums[k], nums[nums[k]], nums[nums[nums[k]]], … },where the iteration stops before a duplicate element occurs.
 
 The task is to return the maximum size among all such sets.
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+
+Start the program.
+
+Read the number of elements and the permutation array.
+
+Create a boolean visited array initialized to false.
+
+For each index i not yet visited, follow the chain x = nums[x], marking visited elements and counting steps 
+until revisiting; this gives the size of s[i].
+
+Track the maximum size encountered.
+
+Output the maximum size.
+
+Stop the program.
 
 ## Program:
 ```
 /*
 Program to find the Longest Length of Nested Set in a Permutation Array
-Developed by: 
-RegisterNumber:  
+Developed by: KIRUTHIGA.B
+RegisterNumber:  212224040160
 */
+
+
+import java.util.Scanner;
+
+public class LongestNestedSet {
+    static int arrayNesting(int[] nums) {
+        int n = nums.length;
+        boolean[] visited = new boolean[n];
+        int maxSize = 0;
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                int size = 0;
+                int current = i;
+                while (!visited[current]) {
+                    visited[current] = true;
+                    current = nums[current];
+                    size++;
+                }
+                if (size > maxSize) maxSize = size;
+            }
+        }
+        return maxSize;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        System.out.println("Enter the permutation array elements (0-based indices):");
+        for (int i = 0; i < n; i++) nums[i] = sc.nextInt();
+        int result = arrayNesting(nums);
+        System.out.println("Longest length of nested set: " + result);
+        sc.close();
+    }
+}
+
 ```
 
 ## Output:
+
+<img width="292" height="90" alt="image" src="https://github.com/user-attachments/assets/1dc52e19-3ed4-4bd3-8aad-04ecbd095f33" />
+
 
 
 
